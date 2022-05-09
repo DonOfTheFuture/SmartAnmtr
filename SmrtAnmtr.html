@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>SmartAnimator</title>
+  <style>
+body{
+width: 103%;
+border: solid 2px black;
+height: 740px;
+position: relative;
+margin: auto;
+overflow-y: hidden;
+overflow-x: hidden;
+left: 2%;
+}
+#hide{
+ width: 100%;
+ height: 30px;
+ background: linear-gradient(lightgray, white);
+ color: white;
+ right: 0%;
+}
+.info-div{
+width: 49%;
+height: 200px;
+margin: 0px;
+display: inline-block;
+position: relative;
+text-align: center;
+padding: 0px;
+right: 2%;
+}
+.info-div > .nav > button{
+width: 15%;
+position: relative;
+margin:0px;
+height:inherit;
+font-size: 30px;
+background: linear-gradient(white, lightgray);
+color: white;
+border: .5px silver solid;
+}
+.info-div > .nav > button:active{
+background: linear-gradient(lightgray, white);
+}
+.info-div>.nav > input[type=text]{ 
+
+ width:60%;
+ font-size: 20px;
+
+}
+
+#imgSlidesDiv{
+  float: right;
+}
+#imgSlidesDiv > #slides, #txtDiv > #txt{
+ background-image: url('');
+}
+#imgSlidesDiv > #slides{
+    background: linear-gradient(gray,darkgray);
+
+}
+.info-div>.nav{
+display: flex;
+flex: 1;
+flex-wrap: nowrap;
+height: 50px;
+left: .5%;
+}
+
+.info-div>.divs{
+position: relative;
+ width: 100%;
+ height: 150px;
+  overflow-x: hidden;
+  overflow-y:auto;
+  background: linear-gradient(gray,darkgray);
+  border: solid .5px gray;
+  
+}
+.info-div > .divs > #imgDiv{
+  position: relative;
+    height: 150px;
+  width: 758px;
+overflow-x:auto;
+overflow-y:hidden;
+white-space: nowrap;
+}
+.info-div > .divs > #imgDiv > #pic{
+  height:150px;
+  width: 200px;
+}
+.info-div > .divs > #imgDiv > #pic > img{
+  height: 150px;
+  width: 150px;
+  position: relative;
+   
+}
+#txtsDiv{
+   float: left;
+   left: 1.5%;
+  background-image: url('https://static.thenounproject.com/png/205147-200.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 50% 100%;
+}
+#txt > textarea{
+   font-size: 25px;
+}
+#animDiv{
+position: relative;
+   width: 1550px;
+   height: 790px;
+  display: flex;
+  flex-wrap: wrap;
+  left: 1%;
+}
+#animDiv > #mov{
+position: relative;
+height: 445px;
+z-index: 1;
+width: 1455px;
+display: inline;
+background-image: url("https://customercare.igloosoftware.com/.api2/api/v1/communities/10068556/previews/thumbnails/4fc20722-5368-e911-80d5-b82a72db46f2?width=680&height=680&crop=False");
+background-repeat: no-repeat;
+background-size: 50% 100%;
+background-position: center;
+}
+#animDiv > #cc{
+position: absolute;
+ z-index: 6;
+ margin: auto;
+ width: 85%;
+ height: 70px; 
+ left: 100px;
+ bottom: 280px;
+ border: solid 1px blue;
+ text-align: center;
+ line-height: 70px;
+ font-size: 30px;
+}
+#mov > img{
+  height: 500px;
+  width: 100%;
+  position: relative;
+  margin: 0px;
+}
+#slide-state{
+  position: relative;
+  width: 100%;
+  height: 45px;
+  margin: 0px;
+  bottom: 110px;
+  left: 4px;
+  z-index: 4;
+}
+#slide-state > button{
+ width: 16.40%;
+ position: relative;
+ display: inline-block;
+ height: inherit;
+ background: linear-gradient(white,lightgray);
+ color: gray;
+ margin: auto;
+ right: .5%;
+}
+#slide-state > button:active{
+ background: linear-gradient(lightgray, white);
+}
+.nav-btn{
+height: 490px;
+width: 40px;
+font-size: 50px;
+ background-color: gray;
+color:white;
+}
+#go-right{
+ float: right;
+ z-index: 2;
+}
+#go-left{
+ float: left;
+ z-index: 2;
+}
+  </style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div id="imgSlidesDiv" class="info-div">
+<div id="img-slides-nav" class="nav">
+<button><i class="glyphicon glyphicon-ok"></i></button>
+  <button>+</button>
+  <input placeholder="Seach Slides" type="text"></input>
+  <button><i class="glyphicon glyphicon-search"></i></button>
+
+</div>
+<div id="slides" class="divs">
+<div style="display:none" class="img-div" id="imgDiv">
+ <div style="display: none" class="" id="pic">
+ <img alt="" src=""></img>
+   </div>
+     
+ </div>
+
+</div>
+</div> 
+<div id="txtsDiv" class="info-div">
+<div id="txt-div-nav" class="nav">
+<button><i class="glyphicon glyphicon-ok"></i></button>
+
+  <button>+</button>
+  <input placeholder="Search Recorded Essays" type="text"></input>
+  <button><i class="glyphicon glyphicon-search"></i></button>
+ 
+</div>
+<div class="divs" id="txts">
+  <div style="display: none;" class="txt-div" id="txt">
+    <textarea id="rec-txt"></textarea>
+  </div>
+  </div>
+</div>
+<button onclick="tog('#animDiv', [{height: screen.availHeight+'px'}]); tog('.info-div', [{height: '0px'}])" id="hide">hide info</button>
+<div class="anim-div" id="animDiv">
+   <button class="nav-btn" id="go-left"><</button>
+   <div id="mov">
+     <img src="" id="movImg" ></img>
+   </div>
+   <button class="nav-btn" id="go-right">></button>
+	  <div id="cc">
+	    <p> </p>
+	  </div>
+ <div id="slide-state">
+  <button>PLAY</button>
+  <button>PAUSE</button>
+  <button>FF</button>
+  <button>REVERSE</button>
+  <button>REG</button>
+  <button>LOOP</button>
+</div>
+</div>
+<div id="speech-div">
+<p id="txt"></p>
+</div>
+</body>
+<script type="text/javascript" src="./SmrtAnmtr1.js"></script>
+<!--
+ rec.onclick = function(){
+       if(recorder.state == 'recording'){
+          recorder.requestData()
+          }else{
+        recorder.start()
+        console.log(recorder.state)
+        recorder.onstart = function(){
+          rec.style.display ="none"
+          res.style.display = 'none'
+                pause.style.display = 'inline-block'
+      save.style.display = 'block'
+	        save.style.display = 'inline-block'
+
+        }
+          }
+      }
+      pause.onclick = function(){
+        recorder.pause()
+        res.style.display = 'inline-block'
+        console.log(`video is ${recorder.state}`)
+        recorder.onpause = function(){
+          pause.style.display = 'none'
+          res.style.display = 'inline-block'
+        }
+      }
+      res.onclick = function(){
+        recorder.resume()
+        console.log(recorder.state)
+        recorder.onresume = function(){
+          pause.style.display = 'inline-block'
+          res.style.display = 'none'
+        }
+      }
+    
+-->
+</html>
